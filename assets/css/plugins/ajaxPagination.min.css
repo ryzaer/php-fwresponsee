@@ -1,0 +1,72 @@
+/** CSS PAGINATION 
+ * https://codepen.io/miaoduanwang/pen/myamxx
+ */
+.pagination {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin-top: 10px;
+}
+.pagination li {
+  display: inline;
+  text-align: center;
+}
+.pagination a {
+  float: left;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px 12px;
+  color: #fff;
+  margin-left: -1px;
+  border: 1px solid transparent;
+  line-height: 1.5;
+}
+.pagination a.active {
+  cursor: default;
+}
+.pagination a:active {
+  outline: none;
+}
+
+.pagination li:first-child a,
+.pagination li:first-child a:hover {
+  -moz-border-radius: 50px 0 0 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px 0 0 50px;
+}
+.pagination li:last-child a,
+.pagination li:last-child a:hover {
+  -moz-border-radius: 0 50px 50px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0 50px 50px 0;
+}
+.pagination a {
+  border-color: #ddd;
+  color: #999;
+  background: #fff;
+}
+.pagination a:hover {
+  color: #616161;
+  background-color: #eee;
+  border-radius: 0;
+}
+.pagination a.active, .pagination.model-2 a:active {
+  border-color: #3f3f3f;
+  background: #3f3f3f;
+  color: #fff;
+  border-radius: 0;
+}
+
+/** pagination warning */
+.pagination.model-2 a:hover {
+  color: #e59400;
+  background-color: #eee;
+  border-radius: 0;
+}
+.pagination.model-2 a.active, .pagination.model-2 a:active {
+  border-color: #e59400;
+  background: #e59400;
+  color: #fff;
+  border-radius: 0;
+}

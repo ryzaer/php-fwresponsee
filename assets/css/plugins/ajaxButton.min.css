@@ -1,0 +1,172 @@
+/** New Loading Button */
+.btn {
+  position: relative;
+  padding:3px 6px;
+  margin:3px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  background-image: linear-gradient(to bottom, #f0f0f0, #f3f3f3, #f5f5f5, #f8f8f8, #fbfbfb, #fbfbfb, #fbfbfb, #fbfbfb, #f8f8f8, #f5f5f5, #f3f3f3, #f0f0f0);
+  transition: background 0.3s;
+  color:#131517; 
+  border: #131517 1px solid;
+  border-radius: 4px;
+  min-height:29px;
+}
+.btn.rounded1x {
+	border-radius: 8px;
+}
+.btn.rounded2x {
+	border-radius: 16px;
+}
+.btn:not(.active):hover {
+  color: #535353;
+  border:#535353 1px solid;
+}
+.btn.btn-linear {
+  background-color: #d6d6d6;
+  background-image: linear-gradient(to bottom, #d6d6d6, #cfcfcf, #cccccc, #d3d3d3, #dcdcdc, #dcdcdc, #dcdcdc, #dcdcdc, #d3d3d3, #cccccc, #cfcfcf, #d6d6d6);
+
+}
+@keyframes btn_blink {
+  0% { border:#131517 1px solid; color: #131517;}
+  50% { border:#535353 1px solid; color: #535353;}
+  100% { border:#131517 1px solid; color: #131517;}
+}
+.btn.active {
+  animation: btn_blink 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+.btn.btn-info {
+  color: #0d59ff;
+  border:#0d59ff 1px solid;
+}
+.btn.btn-info:not(.active):hover {
+  color: #5d90ff;
+  border:#5d90ff 1px solid;
+}
+.btn.btn-linear.btn-info {
+  background-color: #b9d7f7;
+  background-image: linear-gradient(to bottom, #b9d7f7, #b0d2f4, #b2d4f2, #bfd8f2, #d0e0f2, #d0e0f2, #d0e0f2, #d0e0f2, #bfd8f2, #b2d4f2, #b0d2f4, #b9d7f7);
+}
+@keyframes btn_blink_info {
+  0% { border:#0d59ff 1px solid; color: #0d59ff;}
+  50% { border:#5d90ff 1px solid; color: #5d90ff;}
+  100% { border:#0d59ff 1px solid; color: #0d59ff;}
+}
+.btn.btn-info.active {
+  animation: btn_blink_info 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+.btn.btn-success {
+  color: #047e31;
+  border:#047e31 1px solid;
+}
+.btn.btn-success:not(.active):not(:disabled):hover {
+  color: #09b046;
+  border:#09b046 1px solid;
+}
+.btn.btn-linear.btn-success {
+  background-color: #b9e4b9;
+  background-image: linear-gradient(to bottom, #b9e4b9, #b0e7d0, #b2e9e3, #bfe8ef, #d0e7f2, #d0e7f2, #d0e7f2, #d0e7f2, #bfe8ef, #b2e9e3, #b0e7d0, #b9e4b9);
+}
+@keyframes btn_blink_success {
+  0% { border:#047e31 1px solid; color: #047e31;}
+  50% { border:#09b046 1px solid; color: #09b046;}
+  100% { border:#047e31 1px solid; color: #047e31;}
+}
+.btn.btn-success.active {
+  animation: btn_blink_success 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+.btn.btn-danger {
+  color: #cc0000;
+  border:#cc0000 1px solid;
+}
+.btn.btn-danger:not(.active):hover {
+  color: #fa3636;
+  border:#fa3636 1px solid;
+}
+.btn.btn-linear.btn-danger {
+  background-color: #f7b9b9;
+  background-image: linear-gradient(to bottom, #f7b9b9, #f4b0b0, #f2b2b2, #f2bfbf, #f2d0d0, #f2d0d0, #f2d0d0, #f2d0d0, #f2bfbf, #f2b2b2, #f4b0b0, #f7b9b9);
+
+}
+@keyframes btn_blink_danger {
+  0% { border:#cc0000 1px solid; color: #cc0000;}
+  50% { border:#fa3636 1px solid; color: #fa3636;}
+  100% { border:#cc0000 1px solid; color: #cc0000;}
+}
+.btn.btn-danger.active {
+  animation: btn_blink_danger 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+.btn.btn-warning {
+  color: #d78c01;
+  border:#d78c01 1px solid;
+}
+.btn.btn-warning:not(.active):hover {
+  color: #efa418;
+  border:#efa418 1px solid;
+}
+.btn.btn-linear.btn-warning {
+  background-color: #f7e6b9;
+  background-image: linear-gradient(to bottom, #f7e6b9, #f4e0b0, #f2deb2, #f2e2bf, #f2e8d0, #f2e8d0, #f2e8d0, #f2e8d0, #f2e2bf, #f2deb2, #f4e0b0, #f7e6b9);
+}
+@keyframes btn_blink_warning {
+  0% { border:#d78c01 1px solid; color: #d78c01;}
+  50% { border:#efa418 1px solid; color: #efa418;}
+  100% { border:#d78c01 1px solid; color: #d78c01;}
+}
+.btn.btn-warning.active {
+  animation: btn_blink_warning 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn.btn-ajax .icon-spinner_2 {
+  animation: spin 1s linear infinite;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  /* opacity: 0.5; */
+  cursor: not-allowed;
+  /* optional: cegah hover effect */
+  /* pointer-events: none;  */
+  filter: grayscale(20%);
+}
+
+/* Nonaktifkan animasi blinking jika active + disabled */
+.btn.active:disabled,
+.btn[disabled].active {
+  animation: none !important;
+}
+
+/* Tambahan jika kamu mau style per-variant */
+.btn.btn-info:disabled,
+.btn.btn-success:disabled,
+.btn.btn-danger:disabled,
+.btn.btn-warning:disabled {
+  border-color: #757575 !important;
+  color: #757575 !important;
+  background-image: none !important;
+  background-color: #e6e6e6 !important;
+}
+
+/** untuk box editor */
+.box-editor .btn {
+  border: 2px solid #3f3f3f;
+  color: #3f3f3f;
+}
+.box-editor .btn:hover {
+  border: 2px solid #d78c01;
+  color : #000;
+}

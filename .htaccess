@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [QSA,L]  
+    <FilesMatch "\.(ini|env|cfg|conf)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>

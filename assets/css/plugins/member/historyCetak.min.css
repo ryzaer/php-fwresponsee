@@ -1,0 +1,47 @@
+/* LIST GROUP */
+.list-group {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.list-group li span {
+  flex: 1; /* biar teks ambil sisa ruang dengan fleksibel */
+  min-width: 0; /* penting agar teks tidak overflow */
+  color:#f2ac29;
+  /** Memotong kalimat jka kepanjangan '...' */
+  white-space: nowrap;      
+  overflow: hidden;         
+  text-overflow: ellipsis; 
+}
+.list-group li {
+  background-color: #3f3f3f;
+  border-radius: 30px;
+  padding: 2px;
+  margin-bottom: 0.256rem;
+  color: #fff;
+  display: flex; /* tambahkan flex */
+  align-items: center; /* agar icon dan text sejajar vertikal */
+  gap: 8px; /* jarak antara icon dan text */
+  font-size: 12px;
+  cursor: pointer;
+  flex-wrap: wrap; /* agar konten membungkus saat sempit */
+  word-break: break-word; /* agar teks bisa terpotong rapi */
+}
+.list-group li .icon {
+  color: #3f3f3f;
+  background-color: #fff;
+  padding: 2px 5px;
+  border-radius: 30px;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* jaga agar icon tidak mengecil */
+}
+.list-group li:hover {
+  background-color: #585858;
+}
+.list-group li:hover span {
+  color: white;
+}

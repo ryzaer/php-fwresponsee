@@ -1,0 +1,130 @@
+{{@extends:templates/components/frame.html}}
+{{@section:header}}
+    {{'templates/components/header.member.html'}}
+{{@endsection}}
+{{@section:content}}
+    <div class="line">
+        <div class="margin">
+            <div class="s-12 m-12 l-12">
+                <div id="edit-pemohon" class="margin-bottom">						
+                    <!-- EDITING KEPERLUAN PEMOHON -->
+                    <div class="box box-header box-bottom">
+                        <i class="box-nav-icon icon-sli-close"></i>
+                        <div class="margin">
+                            <div class="align-content-center">
+                                <div class="l-8 m-12 s-12">
+                                    <div class="align-content-center margin-bottom">
+                                        <button id="btnKeperluan" class="btn btn-linear">
+                                            <i class="icon-sli-printer"></i><span style="font-size: 12px;" class="text">Cetak Keperluan</span>
+                                        </button>
+                                        <div class="autocomplete-box">
+                                            <input type="text" id="keperluan" class="autocomplete-input" placeholder="Ketik Keperluan..." autocomplete="off">
+                                            <span class="clear-icon"><i class="icon-sli-close"></i></span>
+                                        </div>
+                                    </div>
+                                    <div id="riwayat-register">
+                                        <div style="padding-left: 10px;font-family: Poppins;">
+                                            RIWAYAT SKCK PEMOHON
+                                        </div>
+                                        <style>
+                                            #tb-register tbody td {font-size: 12px;}
+                                            #tb-register tbody tr.proses{cursor:pointer}
+                                            #tb-register tbody tr.proses:hover {
+                                                background:none repeat scroll 0 0 #ffcf7c; color:white; text-shadow: 1px 1px 1px #000;
+                                            }
+                                        </style>
+                                        <table id="tb-register" style="width: 100%;" class="table table-white table-rounded table-warning margin-bottom">
+                                            <thead>
+                                                <tr>
+                                                    <th><i class="icon-sli-list"></i></th>
+                                                    <th>Nomor Register</th>
+                                                    <th>Keperluan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody><tr class="loading"><td colspan="4">&nbsp;</td></tr></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FORM PENGISIAN PEMOHON -->
+                    <div id="form-pemohon" class="box box-content box-top">
+                        <!-- <i class="box-nav-icon icon-sli-close"></i> -->
+                        <div class="margin">
+                            <div class="s-12 m-12 l-12">
+                                <!---PANEL WRAPPER-->
+                                <div class="panel-wrapper">
+                                    <div style="padding: 10px 0;" class="align-content-center">
+                                        <div class="radio-group">
+                                            <input type="radio" id="pribadi" name="biodata" class="segment" checked>
+                                            <label for="pribadi" class="segment-label"><i class="icon icon-sli-user-following"></i>Biodata</label>
+                                            <input type="radio" id="riwayat" name="biodata" class="segment" disabled>
+                                            <label for="riwayat" class="segment-label"><i class="icon icon-sli-list"></i>Riwayat</label>
+                                            <input type="radio" id="keluarga" name="biodata" class="segment" disabled>
+                                            <label for="keluarga" class="segment-label"><i class="icon icon-sli-people"></i>Keluarga</label>
+                                        </div>
+                                    </div>
+                                    <div id="panel-pribadi" class="panel-segment active">                                        
+                                        {{'templates/components/member/panel-pribadi.html'}}
+                                    </div>
+                                    <div id="panel-riwayat" class="panel-segment">
+                                        {{'templates/components/member/panel-riwayat.html'}}
+                                    </div>
+                                    <div id="panel-keluarga" class="panel-segment">
+                                        {{'templates/components/member/panel-keluarga.html'}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s-12 m-12 l-12">
+                                <div class="align-content-center margin-bottom">
+                                    <button id="btnExit" class="btn btn-linear btn-danger">
+                                        <i class="icon icon-cross_mark"></i><span class="text">Tutup</span>
+                                    </button>
+                                    <button id="btnProses" class="btn btn-linear btn-success"
+                                            data-icon="check"
+                                            data-method="POST">
+                                        <i class="icon icon-check"></i><span class="text">Proses Data</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- PENCARIAN DATA PEMOHON -->
+                <div id="data-pemohon" class="box box-content margin-bottom">
+                    <div class="margin">
+                        <div class="s-12 m-12 l-12">
+                            <!---PANEL WRAPPER-->
+                            <div class="panel-wrapper">
+                                <div style="padding: 10px 0;" class="align-content-center">
+                                    <div class="radio-group">
+                                        <input type="radio" id="editor" name="options" class="segment" checked>
+                                        <label for="editor" class="segment-label"><i class="icon icon-sli-note"></i>Editor</label>
+                                        <input type="radio" id="operator" name="options" class="segment">
+                                        <label for="operator" class="segment-label"><i class="icon icon-sli-earphones-alt"></i>Operator</label>
+                                        <input type="radio" id="pengaturan" name="options" class="segment" disabled>
+                                        <label for="pengaturan" class="segment-label"><i class="icon icon-sli-settings"></i>Pengaturan</label>
+                                    </div>
+                                </div>
+                                <div id="panel-editor" class="panel-segment active">
+                                    {{'templates/components/member/panel-editor.html'}}
+                                </div>
+                                <div id="panel-operator" class="panel-segment">
+                                    {{'templates/components/member/panel-operator.html'}}
+                                </div>	
+                                <div id="panel-pengaturan" class="panel-segment"> 
+                                    {{'templates/components/member/panel-pengaturan.html'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{@endsection}}
+{{@section:footer}}
+    {{'templates/components/footer.html'}}
+{{@endsection}}

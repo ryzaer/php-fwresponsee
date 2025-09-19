@@ -1,0 +1,26 @@
+{{@extends:templates/components/frame.html}}
+{{@section:header}}
+    {{'templates/components/header.html'}}
+{{@endsection}}
+{{@section:content}}
+    <div class="line">
+        <div class="margin">
+            <div class="align-content-center">
+                <div class="s-12 m-8 l-6 margin-bottom">
+                    <div id="edit-pemohon">	
+                        <div style="padding-top: 20px;" class="box box-content box-h250 text-center">
+                            <div class="animated_logo danger">
+                                <i class="icon-cancel_circle"></i>
+                            </div> 
+                            <h3>Error {{@error_code}}</h3>
+                            <p>{{@error_info}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{@endsection}}
+{{@section:footer}}
+    {{'templates/components/footer.html'}}
+{{@endsection}}

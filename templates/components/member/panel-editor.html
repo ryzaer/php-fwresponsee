@@ -1,0 +1,76 @@
+<div class="box-editor margin-bottom">
+                                        <div class="margin">
+                                            <div class="s-12 m-12 l-4">
+                                                <span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:#fc9b13">Cari Nomor KTP</b></span>
+                                                <input class="searching cari-nik" style="width:100%;" type="number" name="nomor_identitas" placeholder="•••••••"> 
+                                            </div>				
+                                            <div class="s-12 m-12 l-4">
+                                                <div class=align-content-center style="padding-top: 17px;padding-bottom: 17px;">
+                                                    <button id="btnTambahData" class="btn rounded2x">
+                                                        <i class="icon icon-plus"></i><span class="text">Tambah Data</span>
+                                                    </button>
+                                                    <button id="btnLoadUlang" class="btn rounded2x">
+                                                        <i class="icon icon-reload"></i><span class="text">Reload</span>
+                                                    </button>							 
+                                                </div>
+                                            </div>
+                                            <div class="s-12 m-12 l-4 margin-bottom"> 
+                                                <span style="display:block;padding-left:10px;padding-bottom:3px"><b style="color:#fc9b13">Cari Data Pemohon</b>&nbsp;<span id="mod-info" onclick="$('.informasi').fadeToggle()" class="label label-info"><i class="icon icon-sli-info"></i>Info</span></span>
+                                                <input class="searching cari-nama" style="width:100%;"  type="text" name="pencarian" placeholder="•••••••">
+                                            </div>						
+                                            <div class="informasi s-12 m-12 l-12" style="display:none"> 
+                                                <div class="editor-info">
+                                                    <ol>
+                                                        <li>Dalam melakukan pencarian KTP/NIK & Data Pemohon agar menekan enter setelah pengetikan di form input pengisian</li>
+                                                        <li>Untuk pencarian data Pemohon menjangkau data : (nama,alamat,nomor_hp,nama_ibu & nama_ayah)</li>
+                                                        <li>Format excel dapat di unduh <a style="color:yellow;font-style:italic;font-weight:bold" href="../lib/skck_print.zip" download>disini</a>, sebelum menggunakan file tsb agar terlebih dahulu membaca dokumentasinya di <a style="color:yellow;font-style:italic;font-weight:bold" href="../lib/juk_download.pdf" download>link ini</a></li>
+                                                        <li>Pake microsoft Edge jika Chrome bermasalah</li>
+                                                        <li>Penggunaan tombol shortcut pada Keyboard :
+                                                            <table class="table" style="font-size: 12px;">
+                                    {{foreach item in shortkeys}}
+                                    <tr>{{@item}}</tr>
+                                    {{endforeach}}
+                                                            </table>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                            </div>							
+                                        </div>
+                                    </div>
+                                    <div class="margin">
+                                        <div class="s-12 m-7 l-9">  
+                                            <div class="margin">
+                                            <div class="align-content-center">
+                                            <div class="s-12 m-11 l-11">  
+                                            <div class="table-wrapper">                                   
+                                            <table id="tbskck" class="table table-rounded table-white table-pointer table-secondary margin-bottom" style="width:100%">
+                                                <div class="table-overlay"></div>
+                                                <thead>
+                                                    <tr class="active">
+                                                        <th><i class="icon-sli-list"></i></th>
+                                                        <th>NAMA</th>
+                                                        <th>ALAMAT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="loading">
+                                                        <td class="text-center" colspan="3">Memuat...</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="s-9 m-6 l-3">
+                                            <div class="margin">
+                                            <div class="align-content-center margin-bottom">
+                                            <div class="s-11 m-11 l-11"> 
+                                            <p><i><b>Terakhir Cetak :</b></i></p>
+                                            <div id="terakhir-cetak"></div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>

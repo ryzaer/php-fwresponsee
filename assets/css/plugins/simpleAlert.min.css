@@ -1,0 +1,127 @@
+/* PLUGIN Simple Alert CSS */
+.simple-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.simple-alert-box {
+    background: white;
+    padding: 10px 25px 0 25px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 250px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeInScale 0.2s ease;
+}
+
+.simple-alert-box h4 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.simple-alert-box p {
+    font-size: 12px;
+    margin: 0 0 20px;
+}
+
+.simple-alert-box button {
+    margin-bottom: 23px;
+    padding:0 10px;
+    height: 20px;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Tambahan tipe alert */
+.simple-alert-box.success { 
+  border-left: 3px solid #09b046;
+  border-right: 3px solid #09b046
+}
+.simple-alert-box.danger { 
+  border-left: 3px solid #fa3636;
+  border-right: 3px solid #fa3636
+}
+.simple-alert-box.error { 
+  border-left: 3px solid #fa3636;
+  border-right: 3px solid #fa3636
+}
+.simple-alert-box.info { 
+  border-left: 3px solid #5d90ff;
+  border-right: 3px solid #5d90ff
+}
+.simple-alert-box.warning { 
+  border-left: 3px solid #efa418;
+  border-right: 3px solid #efa418
+}
+
+/** Animated Logo Support untuk simple Alert Plugin */
+.animated_logo {
+    display: inline-block;
+    font-size: 40px;
+}
+@keyframes shake-fast {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-3px, 0); }
+    20% { transform: translate(3px, 0); }
+    30% { transform: translate(-3px, 0); }
+    40% { transform: translate(3px, 0); }
+    50% { transform: translate(-3px, 0); }
+    60% { transform: translate(3px, 0); }
+    70% { transform: translate(-3px, 0); }
+    80% { transform: translate(3px, 0); }
+    90% { transform: translate(-3px, 0); }
+    100% { transform: translate(0, 0); }
+}
+.animated_logo.error {
+    animation: shake-fast 0.5s ease-out; /* lebih cepat dari sebelumnya */
+    color: #fa3636;
+}
+@keyframes bounce-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    80% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+.animated_logo.success {
+    animation: bounce-in 0.5s ease-out;
+    color: #09b046;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+.animated_logo.warning{
+    animation: shake 0.3s ease-in-out;    
+    color: #efa418;
+}
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+.animated_logo.danger {
+    animation: flash 0.3s infinite;
+    color: #fa3636;
+}
+@keyframes slide-fade {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.animated_logo.info {
+    animation: slide-fade 0.5s ease-out;
+    color: #5d90ff;
+}

@@ -1,0 +1,245 @@
+/*
+ * Components CSS - RESTA
+ * https://www.polrestapontaianakkota.org
+ * Copyright by riza.
+*/
+
+/* @font-face {
+  font-family: 'Gtwalsheim';
+  src: url('../font/Gt-Walsheim-Web/gt-walsheim-web.eot');
+  src: url('../font/Gt-Walsheim-Web/gt-walsheim-web.eot?#iefix') format('embedded-opentype'),
+	   url('../font/Gt-Walsheim-Web/gt-walsheim-web.woff') format('woff'),
+	   url('../font/Gt-Walsheim-Web/gt-walsheim-web.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GtwalsheimMed';
+  src: url('../font/Gt-Walsheim-Web/gt-walsheim-medium-web.eot');
+  src: url('../font/Gt-Walsheim-Web/gt-walsheim-medium-web.eot?#iefix') format('embedded-opentype'),
+	   url('../font/Gt-Walsheim-Web/gt-walsheim-medium-web.woff') format('woff'),
+	   url('../font/Gt-Walsheim-Web/gt-walsheim-medium-web.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GtwalsheimThin';
+  src: url('../font/Gt-Walsheim-Web/gt-walsheim-thin-web.eot');
+  src: url('../font/Gt-Walsheim-Web/gt-walsheim-thin-web.eot?#iefix') format('embedded-opentype'),
+	   url('../font/Gt-Walsheim-Web/gt-walsheim-thin-web.woff') format('woff'),
+	   url('../font/Gt-Walsheim-Web/gt-walsheim-thin-web.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+} */
+.bold-text {color:black;font-weight: bold;}
+
+/* IMAGES AND BANNER*/
+/*BANNER EXPO*/
+.banner-logo {
+	position:relative; 
+	float:bottom;
+	z-index: 5;
+	background-position: center center;
+	border-radius:8px 0 0 9px;
+	 -moz-border-radius:8px 0 0 9px;
+	 -webkit-border-radius:8px 0 0 9px;  
+}
+.size-fluid {
+	width: 100%;
+	height: auto;
+	top: 50%;
+}
+.scale-fill {
+	background-size:contain;
+}
+.banner-slide{
+	border-radius:0 9px 9px 0;
+	-moz-border-radius:0 9px 9px 0;
+	-webkit-border-radius:0 9px 9px 0;
+}
+.banner-logo .banner-slide{
+	width: 100%;
+	height: auto;
+	background-repeat:no-repeat;
+}
+/* BOX Item*/
+
+
+/*BOX COMMENT */
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid orange;
+}
+.tip-up {
+  top: -25px; /* Same as body margin top + border */
+  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.tip-left {
+  top: 9px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+.dialogbox .dialogbody {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  margin: 20px 20px 20px 100px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 8px;
+  border: 5px solid orange;
+}
+.dialogbody .message {
+  min-height: 70px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.resta-button {
+  display:inline-block;
+  padding:5px 7px 5px; 
+  width: 100%;
+  font-size:19px;
+  line-height:1.238em;
+  letter-spacing:-1px;
+  color:#2b2b2b;
+  border:2px solid #fff;
+  background:url(../image/button-tail.webp) 0 0 repeat-x #dbdbdb;
+  border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+  cursor:pointer;
+}
+.resta-button:hover {background:#dadada}      
+#owl-demo .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Buttons */
+.button,a.button,a.button:link,a.button:active,a.button:visited {
+  background: #777 none repeat scroll 0 0;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.825rem 1rem;
+  text-align: center;
+  transition: all 0.20s linear 0s;
+  -o-transition: all 0.20s linear 0s;
+  -ms-transition: all 0.20s linear 0s;
+  -moz-transition: all 0.20s linear 0s;
+  -webkit-transition: all 0.20s linear 0s;
+}
+.button.rounded-btn {
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+.button.rounded-full-btn {
+  border-radius: 100px;
+}
+.button:hover {box-shadow: 0 0 10px 100px rgba(255,255,255,0.15) inset;}
+.button.secondary-btn,a.button.secondary-btn,a.button.secondary-btn:link,a.button.secondary-btn:active,a.button.secondary-btn:visited {
+  background: #444 none repeat scroll 0 0;
+}
+.button.cancel-btn,a.button.cancel-btn,a.button.cancel-btn:link,a.button.cancel-btn:active,a.button.cancel-btn:visited {
+  background: #dc003a none repeat scroll 0 0;
+}
+.button.submit-btn,a.button.submit-btn,a.button.submit-btn:link,a.button.submit-btn:active,a.button.submit-btn:visited {
+  background: #b4bf04 none repeat scroll 0 0;
+}
+.button.reload-btn,a.button.reload-btn,a.button.reload-btn:link,a.button.reload-btn:active,a.button.reload-btn:visited {
+  background: #ff9800 none repeat scroll 0 0;
+}
+.button.disabled-btn {
+  cursor: not-allowed!important;
+  opacity: 0.2;
+}
+.button i {
+  background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+  border-radius: 27px;
+  color: #fff;
+  display: inline-block;
+  font-size: 0.8rem;
+  height: 27px;
+  line-height: 27px;
+  margin-right: 5px;
+  width: 27px;
+  transition: all 0.20s linear 0s;
+  -o-transition: all 0.20s linear 0s;
+  -ms-transition: all 0.20s linear 0s;
+  -moz-transition: all 0.20s linear 0s;
+  -webkit-transition: all 0.20s linear 0s;
+}
+.button:hover > i {
+  background: rgba(0, 0, 0, 0.06) none repeat scroll 0 0;
+}
+.bulat-glossy {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #393939 0%, #151515 100%);
+  position: relative;
+}
+.bulat-glossy:after {
+  content: '';
+  width: 85px;
+  height: 75px;
+  border-radius: 50%;
+  opacity: 0.7;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  position: absolute;
+  transform: rotate(-29deg); 
+  top:2px;
+  left:1px;
+}
+.bulat-glossy-gbr {  	
+  position:relative;
+  width: 100px;
+  height: 100px;
+  opacity: 0.8;
+  border: 2px solid grey;
+  border-radius: 50%;
+	-webkit-box-shadow: 0px 1px 2px #4d4d4d;  
+}
+.kotak-glossy {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #393939 0%, #151515 100%);
+  position: relative;
+}
+.kotak-glossy:after {
+  content: '';
+  width: 96px;
+  height: 70px;
+  border-radius: 8px;
+  opacity: 0.9;
+  background: linear-gradient( /* chrome */
+    hsla(0, 0%, 100%, 0.6), hsla(0, 0%, 100%, 0) 50%
+  );  
+  position: absolute;
+  top:2px;
+  left:2px;
+  right:2px;
+}
+.kotak-glossy-gbr {  	
+  position:relative;
+  width: 100px;
+  height: 100px;
+  opacity: 0.9;
+  border: 2px solid grey;
+  border-radius: 10px;
+	-webkit-box-shadow: 0px 1px 2px #4d4d4d;  
+}

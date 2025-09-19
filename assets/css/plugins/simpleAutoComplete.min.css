@@ -1,0 +1,73 @@
+/* Plugin autocomplete */
+.autocomplete-box {
+	position: relative;
+	/* padding-top: 3px; */
+	width: 300px;
+}
+.autocomplete-box .clear-icon {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #757575;
+	display: none;
+	user-select: none;
+}
+.autocomplete-box .clear-icon:hover {
+	color: #000;
+}
+.autocomplete-input {
+	width: 100%;
+	/* min-height:29px; */
+	margin-top:0;
+  /* padding: 8px 22px 8px 8px; ruang untuk ikon */
+  padding-right:20px;
+	/* font-size: 14px; */
+	/* border-radius: 8px; */
+	color: #000000;
+}
+.autocomplete-suggestions {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	border: 1px solid #757575;
+	border-radius: 4px;
+	background: #fff;
+	max-height: 180px;
+	overflow-y: auto;
+	z-index: 1000;
+	display: none;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	color: #000000;
+  
+}
+.autocomplete-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 5px;
+	cursor: pointer;
+	white-space: normal;
+  font-size: 12px;
+}
+.autocomplete-item.hover,
+.autocomplete-item:hover {
+	background: #f0f0f0;
+}
+.autocomplete-item .highlight {
+	font-weight: bold;
+	background: rgb(234, 197, 155);
+}
+.autocomplete-item .thumbnail {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+	border-radius: 4px;
+	flex-shrink: 0; /* jangan mengecil kalau ruang sempit */
+}
+.autocomplete-item .label-text {
+	flex: 1;
+	line-height: 1.2;
+}

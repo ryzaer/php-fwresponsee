@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>{{@title}}</title>
+ <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Niconne|Poppins:300,400,500,700|Roboto:300,400,500,700">
+ <link rel="stylesheet" type="text/css" href="{{@base_script}}assets/css/app.min.css?_={{@time_script}}">	 
+</head>
+<body class="size-960 latar-bata latar-fixed">
+ <!-- Preloading -->
+ <div class="preloading">
+   <div id="loading-bar"></div>
+   <img src="{{@base_script}}assets/image/loader.gif" alt="Loading...">
+ </div>
+ <!-- Element Content -->
+ <div class="wrapper">
+  <header class="about">
+     {{@section:header}}
+  </header>
+  <main class="content">
+     {{@section:content}}
+  </main>
+  <footer class="home">
+     {{@section:footer}}
+  </footer>
+  <script src="{{@base_script}}assets/js/app.min.js?_={{@time_script}}"></script>
+ </div>
+</body>
+</html>

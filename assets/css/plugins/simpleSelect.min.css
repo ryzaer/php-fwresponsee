@@ -1,0 +1,114 @@
+/**CUSTOM Plugin Selected*/
+.simple-select-wrapper {
+  position: relative;
+  font-size: 14px;
+}
+
+.simple-selected {
+  padding: 3px 5px;
+  border: 1px solid #757575;
+  color: #757575;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.simple-selected.has-value {
+  color: #000; /* setelah dipilih */
+}
+
+.simple-selected span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.simple-selected:focus {
+  border: 1px solid #000;
+}
+
+.simple-selected::after {
+  content: "⭣";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #757575;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.simple-selected.active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.simple-selected.disabled {
+  background-color: #e6e6e6e6;
+  color: #757575;
+  cursor: not-allowed;
+}
+
+.simple-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #8f8e8e;
+  border-top: none;
+  display: none;
+  z-index: 10;
+  overflow-y: auto;
+  border-radius: 4px;
+  font-size: 12px;
+
+  max-height: 200px; /* atau 300px sesuai kebutuhan */
+  overflow-y: auto;
+}
+
+.simple-options div {
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.simple-options div span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.simple-options div:hover,
+.simple-options .hovered {
+  background: #f0f0f0;
+}
+
+.simple-options div.disabled {
+  color: #757575;
+  cursor: not-allowed;
+  /* pointer-events: none; */
+}
+
+/* Thumbnail */
+.simple-selected img.thumb,
+.simple-options img.thumb {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}

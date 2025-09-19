@@ -1,0 +1,17 @@
+/** simple pagination button */
+.simple-pg {
+	display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.simple-pg button {
+  padding: 5px 10px;
+  border: 1px solid #b37502;
+  border-radius: 4px;
+  background: #eee;
+  cursor: pointer;
+}
+.simple-pg button.active {
+  background: #f2ac29;
+  color: white;
+}

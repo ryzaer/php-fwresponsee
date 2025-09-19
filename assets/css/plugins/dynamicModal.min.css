@@ -1,0 +1,93 @@
+/* Modal OK */
+body.modal-margin {
+	margin-right: 10px;
+}
+.modal-backdrop {
+	z-index: 1099;
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(8px);
+	display: none;
+}
+.modal-box-wrapper {
+	z-index: 1100;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); 
+}
+.modal-box {
+	padding: 20px 20px 15px;
+	border-radius: 8px;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+	min-width: 11.979vw; /* 230px */
+	max-width:95vw;
+	display: none;
+	transform: scale(0.9); /* hanya scale, tidak lagi translate */
+	transition: transform 0.3s ease;
+	border: 2px solid white;
+}
+.modal-box.error-border {
+	border: 2px solid red;
+	animation: shake-fast 0.5s ease-out;
+}
+
+.modal-box.show {
+	display: block;
+  	transform: scale(1);
+}
+.modal-box .close-btn {
+	position: absolute;
+	top:2px;
+	right:-2px;
+	background: transparent;
+	border: none;
+	font-size: 18px;
+	color: #333;
+	cursor: pointer;
+}
+
+.modal-box .close-btn:hover,
+.modal-box small.italic.alert{
+	color: #ff0000;
+}
+
+.modal-content div.margin-bottom {
+	margin-top:10px;
+}
+.modal-content img {
+	display: block; 
+	width:70px;
+	margin: 0 auto;
+}
+.modal-content .form{
+	text-align: left;
+	display: block; 
+	width:210px;
+	margin: 0 auto;
+}
+.modal-content .captcha {
+	display: flex;
+	align-items: center;     /* vertikal sejajar */
+	gap: 10px;               /* jarak antar elemen */
+	width: 100%;
+}
+.modal-content .captcha input {
+	flex: 1; 
+	width: 70px;
+}
+.modal-content .captcha img {
+	width: 70px;
+	height: 27px;
+	border:1px solid #757575;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.modal-content .captcha img:hover {
+	border:1px solid #fdb519;
+}
+.modal-content button.modal-btn {
+	margin-bottom: 10px;
+}
