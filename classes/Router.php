@@ -3,9 +3,9 @@
 class Router
 {
     private $routes = [];
-    protected $fn;
-    protected $http = [];
+    protected $fn,$config,$http = [];
     protected static $inst ;
+    public $basename;
 
     function __construct($configPath=null)
     {
@@ -590,7 +590,7 @@ class Router
                 $contentBlock = $parts[$i];
                 $next = $parts[$i + 1] ?? null;
 
-                if (strpos($next, 'elseif') === 0) {
+                if (is_string($next) && strpos($next, 'elseif') === 0) {
                     $conditions[] = ['condition' => $currentCondition, 'content' => $contentBlock];
                     $currentCondition = trim(substr($next, 7)); // Ambil kondisi elseif berikutnya
                 } elseif ($next === 'else') {

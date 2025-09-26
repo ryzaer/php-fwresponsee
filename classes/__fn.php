@@ -6,7 +6,7 @@ class __fn
     private $create = false,
             $folder = __DIR__."/__functions",
             $fn_scema,
-            $souce  = [];
+            $source  = [];
 
     static function get($dirs=null,$call=true,$fnscema = null){
         self::$ths = new \__fn();       
