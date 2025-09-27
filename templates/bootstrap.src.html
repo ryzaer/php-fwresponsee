@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search + Dark/Light Toggle</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<style>
+/* Default Light */
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+.navbar, #searchCard, footer {
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark {
+  background-color: #212529;
+  color: #f8f9fa;
+}
+body.dark .navbar, body.dark #searchCard, body.dark footer {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+/* Loop icon */
+.loop-icon {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: inherit;
+}
+
+/* Checkbox groups */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkbox-group label {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+/* Search card */
+#searchCard {
+  display: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 1050;
+}
+
+/* Dark Mode Toggle Button */
+#toggleTheme {
+  cursor: pointer;
+}
+</style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">Demo</a>
+    <div class="ml-auto d-flex align-items-center">
+      <span class="icon-search mr-3" style="cursor:pointer; font-size:1.5rem;">&#128269;</span>
+      <button id="toggleTheme" class="btn btn-sm btn-outline-secondary">🌙 Dark Mode</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Card -->
+<div id="searchCard" class="w-100">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Input + Select -->
+      <div class="col-md-4 mb-2 position-relative">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">⌕</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Search...">
+          <div class="input-group-append">
+            <select class="custom-select">
+              <option value="image">Image</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+          <span class="loop-icon">&#8635;</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="col-md-3 mb-2">
+        <label class="d-block">Tags:</label>
+        <div class="checkbox-group d-flex flex-wrap">
+          <label class="mr-2"><input type="checkbox" value="studio1"> Studio1</label>
+          <label class="mr-2"><input type="checkbox" value="studio2"> Studio2</label>
+        </div>
+      </div>
+
+      <!-- Kategori -->
+      <div class="col-md-3 mb-2">
+        <label class="d-block">Kategori:</label>
+        <div class="checkbox-group d-flex flex-wrap">
+          <label class="mr-2"><input type="checkbox" value="romantic"> Romantic</label>
+          <label class="mr-2"><input type="checkbox" value="thrill"> Thrill</label>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="col-md-2 text-right mb-2">
+        <button class="btn btn-secondary btn-sm" id="closeSearch">Close</button>
+        <button class="btn btn-primary btn-sm" id="submitSearch">Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="container py-5 flex-grow-1">
+  <h1>Konten Halaman</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+
+<!-- Footer -->
+<footer class="py-3 text-center">
+  <p class="mb-0">© 2025 Demo. Semua Hak Dilindungi.</p>
+</footer>
+
+<!-- jQuery + Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(function(){
+  var $body = $('body');
+  var $searchCard = $('#searchCard');
+  var $loopIcon = $searchCard.find('.loop-icon');
+  var $input = $searchCard.find('input');
+  var $toggle = $('#toggleTheme');
+
+  // Cek localStorage
+  if(localStorage.theme === 'dark'){
+    $body.addClass('dark');
+    $toggle.text('☀️ Light Mode');
+  }
+
+  // Toggle Dark/Light
+  $toggle.on('click', function(){
+    if($body.hasClass('dark')){
+      $body.removeClass('dark');
+      localStorage.theme = 'light';
+      $toggle.text('🌙 Dark Mode');
+    } else {
+      $body.addClass('dark');
+      localStorage.theme = 'dark';
+      $toggle.text('☀️ Light Mode');
+    }
+  });
+
+  // Toggle search card
+  $('.icon-search').on('click', function(){
+    $searchCard.slideToggle(200, function(){ $input.focus(); });
+  });
+
+  $('#closeSearch').on('click', function(){
+    $searchCard.slideUp(200);
+  });
+
+  // Submit demo
+  $('#submitSearch').on('click', function(){
+    $loopIcon.show();
+    setTimeout(function(){
+      $loopIcon.hide();
+      alert('Search submitted: ' + $input.val());
+    }, 1000);
+  });
+
+  // Click outside to close search
+  $(document).on('click', function(e){
+    if(!$(e.target).closest('#searchCard, .icon-search').length){
+      $searchCard.slideUp(200);
+    }
+  });
+});
+</script>
+</body>
+</html>

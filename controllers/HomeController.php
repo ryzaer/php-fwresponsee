@@ -7,7 +7,9 @@ class HomeController extends \Router
         $this->set('title',$this->get('pwa.name'));
         $this->set('time_script',strtotime('now'));
         $this->set('base_script',$this->http->base);
-        print $this->render('templates/tailwind.html');
+        print $this->render('templates/bootstrap.html');
+        // print $this->render('templates/bootstrap5.html');
+        // print $this->render('templates/tailwind.html');
         // print $this->render('templates/home.html');
     }
     

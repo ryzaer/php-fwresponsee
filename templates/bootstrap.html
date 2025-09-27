@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 4 + jQuery Navbar Sidebar</title>
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <style>
+    /* Default Light */
+    body {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    .navbar {
+      background-color: #f8f9fa;
+    }
+    .navbar .nav-link,
+    .navbar .navbar-brand {
+      color: #212529;
+    }
+    .navbar .nav-link:hover {
+      color: #0056b3;
+    }
+    footer {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background-color: #212529;
+      color: #f8f9fa;
+    }
+    body.dark .navbar {
+      background-color: #343a40;
+    }
+    body.dark .navbar .nav-link,
+    body.dark .navbar .navbar-brand {
+      color: #f8f9fa;
+    }
+    body.dark .navbar .nav-link:hover {
+      color: #efcc50;
+    }
+    body.dark footer {
+      background-color: #343a40;
+      color: #adb5bd;
+    }
+
+    /* CARD */
+    .card-img-top {
+      height: 8rem;
+      object-fit: cover;
+    }
+
+    body.dark .card-body {
+      background-color: #343a40;
+      color: #adb5bd;
+      border-radius: 0 0 4px 4px;
+    }
+
+    body.dark .card {
+      border: #242628;
+    }
+
+    /* Custom Hamburger Icon */
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(33, 37, 41, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+    body.dark .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(248, 249, 250, 0.85)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    /* Sidebar (mobile mode) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100%;
+      background: #f8f9fa;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      z-index: 1050;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    body.dark .sidebar {
+      background: #343a40;
+      color: #f8f9fa;
+    }
+    
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 10px 20px;
+      color: inherit;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background: rgba(0,0,0,0.05);
+    }
+    body.dark .sidebar a:hover {
+      background: #495057;
+      color: #efcc50;
+    }
+
+    /* Submenu (sidebar) */
+    .sidebar .submenu {
+      display: none;
+      padding-left: 1rem;
+    }
+    .submenu-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px 20px;
+    }
+    .submenu-toggle::after {
+        display: inline-block;
+        margin-right: auto;
+        font-size: 0.8rem; /* bisa disesuaikan */
+        line-height: 1;
+        transition: transform 0.3s ease;
+    }
+    .submenu-toggle.open::after {
+        transform: rotate(-180deg); /* jadi ▴ */
+    }
+    .icon-color::after {
+      content: "☼";     
+      font-size: large;
+      cursor: pointer;
+      color: #6a6d70;      
+    }
+    .icon-color.night::after {
+      color: #f8f9fa;
+    }
+    .icon-search::after {
+        content: "⌕";
+        font-size: x-large;
+        cursor: pointer;
+        color: #6a6d70;      
+    }
+    .icon-color.mobile, 
+    .icon-search.mobile 
+    {
+        margin-right: .3rem;
+    }
+    .icon-color.desktop,
+    .icon-search.desktop 
+    {
+        margin-left: .3rem;
+    }
+    .icon-color.mobile::after{
+      font-size: x-large;        
+    }
+    .icon-search.mobile::after 
+    {
+        font-size: xx-large;        
+    }
+    body.dark .icon-search::after,
+    body.dark .icon-search.mobile::after {
+        color: #f8f9fa;
+    }
+    .navbar-toggler {
+        display: flex;             /* flex parent */
+        align-items: center;       /* vertikal center */
+        justify-content: flex-start; /* horizontal kiri */
+        padding: 0.25rem 0.75rem;  /* sesuai bootstrap */
+    }
+    .navbar-toggler-icon {
+        display: block;            /* pastikan block */
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+
+    /* Loop icon */
+.loop-icon {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+/* Checkbox groups */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkbox-group label {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+/* Search card */
+#searchCard {
+  display: none;
+  padding: 1rem 0;
+  background: #fff;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+}
+body.dark #searchCard {
+  border-bottom: 1px solid #242628;
+  background: #343a40;
+}
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand font-weight-bold text-primary" href="#">BootstrapDemo</a>
+      <button class="navbar-toggler" type="button">
+        <span class="icon-search mobile"></span>
+        <span class="icon-color mobile"></span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="mainNav" class="collapse navbar-collapse d-none d-md-flex">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="featDropdown" data-toggle="dropdown">Features</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Feature 1</a>
+              <a class="dropdown-item" href="#">Feature 2</a>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+        <span class="icon-color desktop"></span>
+        <span class="icon-search desktop"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Card -->
+<div id="searchCard" class="w-100">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Input + Select -->
+      <div class="col-md-6 mb-2 position-relative">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">⌕</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Search...">
+          <div class="input-group-append">
+            <select class="custom-select">
+              <option value="all">All</option>
+              <option value="image">Image</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+          <span class="loop-icon">&#8635;</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="col-md-3 mb-2">
+        <label class="d-block">Tags:</label>
+        <div class="checkbox-group d-flex flex-wrap">
+          <label class="mr-2"><input type="checkbox" value="studio1"> Studio1</label>
+          <label class="mr-2"><input type="checkbox" value="studio2"> Studio2</label>
+        </div>
+      </div>
+
+      <!-- Kategori -->
+      <div class="col-md-3 mb-2">
+        <label class="d-block">Kategori:</label>
+        <div class="checkbox-group d-flex flex-wrap">
+          <label class="mr-2"><input type="checkbox" value="romantic"> Romantic</label>
+          <label class="mr-2"><input type="checkbox" value="thrill"> Thrill</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Content -->
+  <main class="flex-grow-1 container py-5 text-center">
+    <h1 class="mb-4">Halo Dunia 🌍</h1>
+    <p class="mb-4">Support icon <strong>Night / Light</strong> Color 🎨</p>
+    <!-- Grid Gallery -->
+  <div class="row">
+      <div class="col-lg-3 col-md-4 col-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <img class="card-img-top"
+               src="http://localhost/__repository/syncronizer/skck/attachments/file.php?name=1208084108860003&amp;item=foto"
+               alt="1208084108860003"
+               style="cursor: pointer;"
+               data-toggle="modal"
+                    data-target="#imageModal"
+                    data-img="http://localhost/__repository/syncronizer/skck/attachments/file.php?name=1208084108860003&amp;item=foto"
+                    data-title="1208084108860003">
+          <div class="card-body">
+            <p class="card-text">
+              1208084108860003 <br>
+              <small>
+                25.68 KB
+              </small>
+            </p>
+            <button type="button"
+                    class="btn btn-sm btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#imageModal"
+                    data-img="./file.php?name=1208084108860003&amp;item=ktp"
+                    data-title="1208084108860003">
+            KTP
+            </button>
+            <button type="button"
+                    class="btn btn-sm btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#imageModal"
+                    data-img="./file.php?name=1208084108860003&amp;item=kk"
+                    data-title="1208084108860003">
+            KK
+            </button>
+            <!-- <h6 class="card-title"
+                title="1208084108860003">
+              1208084108860003
+            </h6> -->
+          </div>
+        </div>
+      </div>
+      
+      </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-3 text-center">
+    <p class="mb-0">© 2025 BootstrapDemo. Semua Hak Dilindungi.</p>
+  </footer>
+
+  <!-- jQuery + Bootstrap 4 JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(function () {
+      var $body = $('body');
+
+      // Buat sidebar dari nav utama
+      const $sidebar = $(`
+        <div id="sidebar" class="sidebar">
+          <button id="closeSidebar" class="close btn btn-link text-right text-dark">&times;</button>
+        </div>
+      `);
+      
+
+      $(".navbar-nav > .nav-item").each(function() {
+        const $item = $(this);
+        const $link = $item.find("> .nav-link").first();
+        const $dropdown = $item.find(".dropdown-menu");
+
+        if ($dropdown.length) {
+            // dropdown jadi submenu
+            const $submenuToggle = $link.clone().removeAttr("data-toggle id").addClass("submenu-toggle");
+            const $submenu = $("<div class='submenu'></div>");
+            $dropdown.find("a").each(function(){
+                $submenu.append($(this).clone());
+            });
+            $sidebar.append($submenuToggle).append($submenu);
+        } else {
+            // non-dropdown
+            $sidebar.append($link.clone());
+        }
+    });
+
+      $body.append($sidebar);
+
+      // cek localStorage
+      if (localStorage.theme === 'dark') {
+        $body.addClass('dark');
+        $('.icon-color').addClass('night');
+      }
+
+      // dark/light toggle
+      $('.icon-color').on('click', function () {
+        if ($body.hasClass('dark')) {
+          $body.removeClass('dark');
+          localStorage.theme = 'light';
+          $(this).removeClass('night');
+        } else {
+          $body.addClass('dark');
+          localStorage.theme = 'dark';
+          $(this).addClass('night');
+        }
+      });
+
+      // Sidebar toggle
+      $('.navbar-toggler').on('click', function (e) {
+        if($(e.target).hasClass('icon-search') || $(e.target).hasClass('icon-color'))            
+          return ; 
+        $('#sidebar').addClass('open');
+        
+      });
+      $(document).on('click', '#closeSidebar', function () {
+        $('#sidebar').removeClass('open');
+      });
+
+      // Submenu toggle
+      $(document).on('click', '.submenu-toggle', function (e) {
+        e.preventDefault();
+        $(this).toggleClass("open").next('.submenu').slideToggle(300);
+      });
+
+      // menu searchhh
+      var $searchCard = $('#searchCard');
+  var $loopIcon = $searchCard.find('.loop-icon');
+  var $input = $searchCard.find('input[type=text]');
+
+  // Toggle search card below navbar
+  $('.icon-search').on('click', function(){
+    if($searchCard.is(':visible')){
+      $searchCard.slideUp(200,function(){ 
+        $('.navbar').addClass('shadow-sm');
+      })
+    }else{
+      $('.navbar').removeClass('shadow-sm');
+      $searchCard.slideDown(200,function(){ 
+        $input.focus(); 
+      });
+    }
+    //$searchCard.slideToggle(200, function(){ 
+    //  $input.focus(); 
+    //});
+  });
+
+  // Close button
+  $('#closeSearch').on('click', function(){
+    $searchCard.slideUp(200);
+  });
+
+  // Submit demo
+  $('#submitSearch').on('click', function(){
+    $loopIcon.show();
+    setTimeout(function(){ 
+      $loopIcon.hide();
+      alert('Search submitted: ' + $input.val());
+    }, 1000);
+  });
+
+  // Click outside to close
+  $(document).on('click', function(e){
+    if(!$(e.target).closest('#searchCard, .icon-search').length){
+      $searchCard.slideUp(200,function(){ 
+        $('.navbar').addClass('shadow-sm');
+      })
+    }
+  });
+    });
+  </script>
+</body>
+</html>
