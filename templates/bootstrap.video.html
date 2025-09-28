@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Gallery</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <style>
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .video-card img,
+    .video-card video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .video-card video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .video-card:hover img {
+      opacity: 0;
+    }
+    .video-card:hover video {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+  <div class="row">
+
+    <!-- Card 1 -->
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card video-card shadow-sm">
+        <img alt="Poster 1">
+        <video muted loop preload="auto">
+          <source src="http://localhost/jin.mp4" type="video/mp4">
+        </video>
+        <div class="card-body p-2">
+          <h6 class="card-title mb-1">Video 1</h6>
+          <small class="text-muted">2 min preview</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card video-card shadow-sm">
+        <img alt="Poster 2">
+        <video muted loop preload="auto">
+          <source src="http://localhost/jin.mp4" type="video/mp4">
+        </video>
+        <div class="card-body p-2">
+          <h6 class="card-title mb-1">Video 2</h6>
+          <small class="text-muted">5 min preview</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // SCRIPT INI TERGANTUNG CORS
+  // Fungsi buat ambil snapshot
+  function generateSnapshot(video, img) {
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    img.src = canvas.toDataURL("image/jpeg", 0.8);
+  }
+
+  // Loop semua video card
+  document.querySelectorAll(".video-card").forEach(card => {
+    const video = card.querySelector("video");
+    const img = card.querySelector("img");
+
+    // Ambil snapshot saat metadata siap
+    video.addEventListener("loadedmetadata", () => {
+      // Pindah ke 1 detik agar tidak hitam
+      video.currentTime = Math.min(10, video.duration / 2);
+    });
+
+    // Setelah berhasil seek, ambil frame
+    video.addEventListener("seeked", () => {
+      if (!img.src) { // hanya sekali snapshot
+        generateSnapshot(video, img);
+      }
+    });
+
+    // Hover play/pause
+    card.addEventListener("mouseenter", () => {
+      video.play();
+    });
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Gallery HLS Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <style>
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .video-card img,
+    .video-card video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .video-card video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .video-card:hover img {
+      opacity: 0;
+    }
+    .video-card:hover video {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+  <div class="row">
+
+    <!-- Card 1 (MP4 biasa) -->
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card video-card shadow-sm">
+        <img src="https://via.placeholder.com/300x200.png?text=Poster+MP4" alt="Poster 1">
+        <video muted loop preload="none">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="card-body p-2">
+          <h6 class="card-title mb-1">Video MP4</h6>
+          <small class="text-muted">2 min preview</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 (HLS .m3u8) -->
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card video-card shadow-sm">
+        <img src="https://via.placeholder.com/300x200.png?text=Loading+Poster..." alt="Poster HLS">
+        <video id="hlsVideo" muted loop crossorigin="anonymous"></video>
+        <div class="card-body p-2">
+          <h6 class="card-title mb-1">Video HLS</h6>
+          <small class="text-muted">Live stream preview</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- hls.js -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+  // Hover play/pause semua video
+  document.querySelectorAll(".video-card").forEach(card => {
+    const video = card.querySelector("video");
+    if (!video) return;
+
+    card.addEventListener("mouseenter", () => {
+      video.play();
+    });
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0; // reset ke awal
+    });
+  });
+
+  // Setup HLS (m3u8)
+  const hlsUrl = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"; // contoh m3u8
+  const hlsVideo = document.getElementById("hlsVideo");
+
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(hlsUrl);
+    hls.attachMedia(hlsVideo);
+  } else if (hlsVideo.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native support
+    hlsVideo.src = hlsUrl;
+  }
+
+  // Buat snapshot otomatis untuk poster
+  hlsVideo.addEventListener("loadeddata", () => {
+    // tunggu buffer awal
+    hlsVideo.currentTime = 1; // lompat 1 detik
+  });
+
+  hlsVideo.addEventListener("seeked", () => {
+    try {
+      const canvas = document.createElement("canvas");
+      canvas.width = hlsVideo.videoWidth;
+      canvas.height = hlsVideo.videoHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(hlsVideo, 0, 0, canvas.width, canvas.height);
+
+      const imgData = canvas.toDataURL("image/jpeg");
+      const img = hlsVideo.previousElementSibling; // <img>
+      img.src = imgData; // ganti poster
+    } catch (e) {
+      console.warn("Snapshot gagal (CORS mungkin tidak diizinkan)", e);
+    }
+  });
+</script>
+
+</body>
+</html>
